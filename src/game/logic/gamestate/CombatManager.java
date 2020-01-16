@@ -60,9 +60,12 @@ public class CombatManager {
 		}
 		int damage = this.hero.attack();
 		CreatureBase targetEnemy = this.enemies.get(target);
+		if(targetEnemy.getHp() <= 0 ) {
+			return "Target is already dead.";
+		}
 		targetEnemy.reduceHp(damage);
 		this.nextTurn();
-		return String.format("Your dealt %s damage to %s.", damage, targetEnemy.getName() );
+		return String.format("You dealt %s damage to %s.", damage, targetEnemy.getName() );
 	}
 	
 	public int checkCombatStatus() {
