@@ -22,7 +22,7 @@ public class CharacterSelectItem extends JPanel {
 		
 		JLabel lblImage = new JLabel("");
 		
-		final ImageIcon image = new ImageIcon(CharacterSelectItem.class.getResource(String.format("/assets/%s.jpg", name)));
+		final ImageIcon image = new ImageIcon(CharacterSelectItem.class.getResource(String.format("/assets/%s.jpg", name.toLowerCase())));
 		
 		lblImage.setIcon(image);
 		lblImage.setBackground(new Color(240, 240, 240));

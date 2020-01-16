@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import game.common.exceptions.CharacterNotFoundException;
 import game.data.DataQuery;
 import game.ui.components.CharacterSelectItem;
 
@@ -40,17 +41,17 @@ public class CharacterSelectionScreen extends JFrame {
 		contentPane.add(panelHeroes);
 		panelHeroes.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		CharacterSelectItem warriorSelect = new CharacterSelectItem("warrior");
+		CharacterSelectItem warriorSelect = new CharacterSelectItem("Warrior");
 		panelHeroes.add(warriorSelect);
 		
 		JRadioButton rdbtnWarrior = new JRadioButton("");
 		panelHeroes.add(rdbtnWarrior);
-		CharacterSelectItem archerSelect = new CharacterSelectItem("archer");
+		CharacterSelectItem archerSelect = new CharacterSelectItem("Archer");
 		panelHeroes.add(archerSelect);
 		
 		JRadioButton rdbtnArcher = new JRadioButton("");
 		panelHeroes.add(rdbtnArcher);
-		CharacterSelectItem mageSelect = new CharacterSelectItem("mage");
+		CharacterSelectItem mageSelect = new CharacterSelectItem("Wizard");
 		panelHeroes.add(mageSelect);
 		
 		JRadioButton rdbtnMage = new JRadioButton("");
@@ -64,6 +65,7 @@ public class CharacterSelectionScreen extends JFrame {
 		
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
 				if(rdbtnWarrior.isSelected() ) {
 					LobbyScreen screen = new LobbyScreen(DataQuery.getHero("Warrior"));
 					screen.setVisible(true);
@@ -75,9 +77,12 @@ public class CharacterSelectionScreen extends JFrame {
 					CharacterSelectionScreen.this.setVisible(false);
 				}
 				else if(rdbtnMage.isSelected() ) {
-					LobbyScreen screen = new LobbyScreen(DataQuery.getHero("Mage"));
+					LobbyScreen screen = new LobbyScreen(DataQuery.getHero("Wizard"));
 					screen.setVisible(true);
 					CharacterSelectionScreen.this.setVisible(false);
+				}
+				} catch(CharacterNotFoundException exception) {
+					exception.printStackTrace();
 				}
 				
 			}

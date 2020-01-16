@@ -1,5 +1,6 @@
 package game.data;
 
+import game.common.exceptions.CharacterNotFoundException;
 import game.common.exceptions.InvalidEnemyNumberException;
 import game.entity.creatures.*;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataQuery {
-	public static HeroBase getHero(String name) {
+	public static HeroBase getHero(String name) throws CharacterNotFoundException {
 		String resourceName = "/data/heroes.json";
 		 InputStream is = DataQuery.class.getResourceAsStream(resourceName);
 	        if (is == null) {
@@ -21,17 +22,45 @@ public class DataQuery {
 	       
 	        JSONObject stats = object.getJSONObject(name);
 	        
-	        return new HeroBase(
-	        		name,
-	        		4,
-	        		stats.getInt("strength"),
-	        		stats.getInt("dexterity"),
-	        		stats.getInt("constitution"),
-	        		stats.getInt("wisdom"),
-	        		stats.getInt("intelligence"),
-	        		stats.getInt("charisma")
-	        		);
-
+	        switch(name) {
+	        case "Warrior": 
+	        	return new Warrior(
+	        			name,
+		        		1,
+		        		stats.getInt("strength"),
+		        		stats.getInt("dexterity"),
+		        		stats.getInt("constitution"),
+		        		stats.getInt("wisdom"),
+		        		stats.getInt("intelligence"),
+		        		stats.getInt("charisma")
+	        			);
+	        case "Archer":
+	        	return new Archer(
+	        			name,
+		        		1,
+		        		stats.getInt("strength"),
+		        		stats.getInt("dexterity"),
+		        		stats.getInt("constitution"),
+		        		stats.getInt("wisdom"),
+		        		stats.getInt("intelligence"),
+		        		stats.getInt("charisma")
+		        		);
+	        case "Wizard":
+	        	return new Wizard(
+	        			name,
+		        		1,
+		        		stats.getInt("strength"),
+		        		stats.getInt("dexterity"),
+		        		stats.getInt("constitution"),
+		        		stats.getInt("wisdom"),
+		        		stats.getInt("intelligence"),
+		        		stats.getInt("charisma")
+	        			);
+	        default: 
+	        	throw new CharacterNotFoundException(name);
+	        }
+	        
+	  
 	}
 	
 	public static BasicEnemy getEnemy(String name) {

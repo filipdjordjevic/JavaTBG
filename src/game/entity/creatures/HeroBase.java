@@ -1,6 +1,6 @@
 package game.entity.creatures;
 
-public class HeroBase extends CreatureBase{
+public abstract class HeroBase extends CreatureBase{
 	public HeroBase(
 			String name,
 			int level,
@@ -30,12 +30,11 @@ public class HeroBase extends CreatureBase{
 		return 0;
 	}
 
-	@Override
-	public int attack() {
-		// TODO Auto-generated method stub
-		return 5;
-	}
 	
+	public void levelUp() {
+		this.level++;
+		this.currentHp = this.getMaxHp();
+	}
 	
 	
 }

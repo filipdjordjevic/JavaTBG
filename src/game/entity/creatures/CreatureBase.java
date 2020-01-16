@@ -40,8 +40,7 @@ public abstract class CreatureBase {
 		this.intelligence = intelligence;
 		this.charisma = charisma;
 		
-		this.hp = this.level * this.constitution;
-		this.currentHp = this.hp;
+		this.currentHp = this.getMaxHp();
 	}
 	
 	//getters
@@ -58,7 +57,7 @@ public abstract class CreatureBase {
 	}
 	
 	public int getMaxHp() {
-		return this.hp;
+		return this.level * this.constitution;
 	}
 	
 	public int getStrength() {
@@ -97,6 +96,10 @@ public abstract class CreatureBase {
 	
 	public void reduceHp(int damage) {
 		this.currentHp -= damage;
+	}
+	
+	public boolean isDead() {
+		return this.currentHp <= 0;
 	}
 	
 }

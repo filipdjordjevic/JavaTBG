@@ -24,6 +24,8 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
@@ -97,10 +99,33 @@ public class CombatScreen extends JFrame {
 		    public void actionPerformed(ActionEvent e) {
 		        textOutput.setText(CombatScreen.this.combatManager.playNextTurn(CombatScreen.this.getTarget() ) );
 		        CombatScreen.this.updateUI(panelHero, panelEnemies);
-		        if(CombatScreen.this.combatManager.checkCombatStatus() == 1) {
-		        	setVisible(false);
-		        	dispose();
+		        int gameStatus = CombatScreen.this.combatManager.checkCombatStatus();
+		        if( gameStatus == 1) {
+		        	hero.levelUp();
+		        	int clicked = JOptionPane.showConfirmDialog(CombatScreen.this, "You've won.", "Congratulations",
+		        			JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
+		        	disable();
+		        	if(clicked == JOptionPane.OK_OPTION) {
+		        		setVisible(false);
+			        	dispose();
+			        	new LobbyScreen(hero).setVisible(true);;
+		        	}
+		        
 		        }
+		        else if( gameStatus == -1 ) {
+		        	int clicked = JOptionPane.showConfirmDialog(CombatScreen.this, "Restart?", "Game Over", JOptionPane.YES_NO_OPTION);
+		        	disable();
+		        	if(clicked == JOptionPane.YES_OPTION) {
+		        		setVisible(false);
+			        	dispose();
+			        	new CharacterSelectionScreen().setVisible(true);;
+		        	}
+		        	else {
+		        		dispose();
+		        	}
+		        	
+		        }
+		       
 		    }
 		});
 		

@@ -51,6 +51,9 @@ public class CombatManager {
 	
 	public String playNextTurn(int target) {
 		CreatureBase current = this.creatures.get(this.currentIndex);
+		if(current.isDead() ) {
+			current = this.creatures.get(++this.currentIndex);
+		}
 		if(!(current instanceof HeroBase) ) {
 			int damage = current.attack();
 			this.hero.reduceHp(damage);
@@ -60,7 +63,7 @@ public class CombatManager {
 		}
 		int damage = this.hero.attack();
 		CreatureBase targetEnemy = this.enemies.get(target);
-		if(targetEnemy.getHp() <= 0 ) {
+		if(targetEnemy.isDead() ) {
 			return "Target is already dead.";
 		}
 		targetEnemy.reduceHp(damage);
@@ -69,13 +72,13 @@ public class CombatManager {
 	}
 	
 	public int checkCombatStatus() {
-		if(this.hero.getHp() <= 0) {
+		if(this.hero.isDead()) {
 			return -1;
 		}
 		int dead = 0;
 		int numbers = this.enemies.size();
 		for(CreatureBase enemy : this.enemies) {
-			if(enemy.getHp() <= 0) {
+			if(enemy.isDead() ) {
 				dead++;
 			}
 		}
