@@ -49,6 +49,10 @@ public class CombatScreen extends JFrame {
 		this.combatManager = new CombatManager(hero);
 		this.targetButtons = new ButtonGroup();
 		
+		for(int i = 0; i < 3; ++i ) {
+			targetButtons.add(new JRadioButton(""));
+		}
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 450);
 		contentPane = new JPanel();
@@ -141,11 +145,11 @@ public class CombatScreen extends JFrame {
 	}
 	
 	private void displayEnemies(JPanel panel, List<CreatureDisplay> enemiesDisplay) {
+		Enumeration<AbstractButton> buttons = this.targetButtons.getElements();
 		for (CreatureDisplay display : enemiesDisplay ) {
 			panel.add(display);
-			JRadioButton btn = new JRadioButton("");
-			this.targetButtons.add(btn);
-			panel.add(btn);
+
+			panel.add(buttons.nextElement());
 			
 		}
 		}
@@ -168,7 +172,7 @@ public class CombatScreen extends JFrame {
 	        panelHero.add(new CreatureDisplay(this.combatManager.getHero() ));
 	        panelHero.updateUI();
 	        panelEnemies.removeAll();
-	        this.targetButtons = new ButtonGroup();
+	    
 	        this.displayEnemies(
 	        		panelEnemies,
 	        		this.generateEnemiesDisplay(this.combatManager.getEnemies() )

@@ -52,7 +52,8 @@ public class CombatManager {
 	public String playNextTurn(int target) {
 		CreatureBase current = this.creatures.get(this.currentIndex);
 		if(current.isDead() ) {
-			current = this.creatures.get(++this.currentIndex);
+			this.nextTurn();
+			current = this.creatures.get(this.currentIndex);
 		}
 		if(!(current instanceof HeroBase) ) {
 			int damage = current.attack();
