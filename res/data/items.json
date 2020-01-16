@@ -1,0 +1,19 @@
+{
+	"Wooden sword": {
+		"type": "sword",
+		"requiredLevel": 1,
+		"damage": 1
+	},
+	
+	"Practice bow": {
+		"type": "bow",
+		"requiredLevel": 1,
+		"damage": 1
+	},
+	
+	"Oak branch": {
+		"type": "wand",
+		"requiredLevel": 1,
+		"damage": 1
+	},
+}

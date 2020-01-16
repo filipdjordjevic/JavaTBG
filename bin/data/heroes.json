@@ -1,0 +1,29 @@
+{
+	"Warrior" : {
+		"strength": 16,
+		"constitution": 14,
+		"dexterity": 12,
+		"wisdom": 8,
+		"intelligence": 8,
+		"charisma": 8
+	},
+	
+	"Archer": {
+		"strength": 12,
+		"constitution": 12,
+		"dexterity": 16,
+		"wisdom": 10,
+		"intelligence": 8,
+		"charisma": 12
+	},
+	
+	"Mage": {
+		"strength": 6,
+		"constitution": 8,
+		"dexterity": 8,
+		"wisdom": 16,
+		"intelligence": 18,
+		"charisma": 12
+	}
+
+}
